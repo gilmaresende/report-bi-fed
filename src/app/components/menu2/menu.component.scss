@@ -1,0 +1,65 @@
+:host {
+  /* Container do Menu */
+  .menu-container {
+    width: 250px;
+    height: 100vh;
+    background-color: #222;
+    color: white;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-left: 10px;
+  }
+
+  /* Estado Retraído */
+  .menu-container:not(.expanded) {
+    width: 60px;
+  }
+
+  /* Botão de Toggle */
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    align-self: flex-start;
+  }
+
+  /* Itens do Menu */
+  .menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  .menu li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .menu li:hover {
+    background-color: #444;
+  }
+
+  /* Ícones */
+  .menu li i {
+    font-size: 20px;
+    margin-right: 15px;
+  }
+
+  /* Esconder texto quando o menu está retraído */
+  .menu-container:not(.expanded) .menu-text {
+    display: none;
+  }
+}

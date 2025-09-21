@@ -1,0 +1,16 @@
+<div class="upload-container">
+  <label [for]="id" class="file-label">📂 {{ label }}</label>
+  <input
+    type="file"
+    [id]="id"
+    class="file-input file-color"
+    (change)="onFileSelected($event)"
+  />
+  @if(!hasError){
+  <span class="file-name">{{ fileName || "Nenhum arquivo selecionado" }}</span>
+  }@else{
+  <span class="file-name error-color" pInputText [pTooltip]="errorMessage"
+    >{{ fileName || "Nenhum arquivo selecionado" }} *
+  </span>
+  }
+</div>

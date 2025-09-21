@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.upload-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: white;
+  width: 100%;
+  max-width: 500px;
+}
+
+.file-label {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.file-label:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.file-input {
+  display: none;
+}
+
+.file-color {
+  color: #f8f9fa;
+}
+
+.file-name {
+  margin-left: 15px;
+  font-size: 14px;
+
+  flex-grow: 1; /* Faz o nome do arquivo ocupar o espaço disponível */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

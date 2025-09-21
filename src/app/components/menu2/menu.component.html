@@ -1,0 +1,16 @@
+<div class="menu-container" [class]="{ expanded: expanded }">
+  <!-- Botão para Expandir/Retratar -->
+  <button class="toggle-btn" (click)="toggleMenu()">☰</button>
+
+  <!-- Itens do Menu -->
+  <ul class="menu">
+    @for (item of menu; track $index) {
+    <li (click)="toPage(item.rota)">
+      <i class="{{ item.icon }}"></i>
+      <span class="menu-text" [class]="{ hidden: !expanded }">{{
+        item.nome
+      }}</span>
+    </li>
+    }
+  </ul>
+</div>

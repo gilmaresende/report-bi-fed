@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs">
+  @for (header of headers; track $index) {
+  <li class="nav-item">
+    <a
+      class="nav-link point"
+      (click)="selectTab(header)"
+      [class.active]="header.active"
+    >
+      {{ header.label }}
+    </a>
+  </li>
+  }
+</ul>
+<div class="tab-content">
+  <ng-content />
+</div>

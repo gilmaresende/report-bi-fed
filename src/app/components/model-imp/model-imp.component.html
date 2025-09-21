@@ -1,0 +1,10 @@
+@if (show) {
+<div class="modal">
+  <div class="modal-content">
+    <span (click)="fecharModal()" class="close">&times;</span>
+    <div class="position-fix">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
+}

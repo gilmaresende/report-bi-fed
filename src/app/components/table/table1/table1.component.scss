@@ -1,0 +1,24 @@
+:host {
+  .t1-row {
+    height: 25px;
+    border-bottom: 1px rgb(224, 224, 224) solid;
+  }
+
+  .t1-col {
+    height: 40px;
+    padding-left: 15px;
+    border-bottom: 1px rgb(224, 224, 224) solid;
+  }
+
+  .tb2Center {
+    text-align: center;
+  }
+
+  .tb2Left {
+    text-align: left;
+  }
+
+  .tb2Right {
+    text-align: right;
+  }
+}

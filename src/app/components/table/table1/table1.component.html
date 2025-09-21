@@ -1,0 +1,70 @@
+<div class="card">
+  <p-table
+    [value]="data"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowHover]="true"
+  >
+    <ng-template #header>
+      <tr>
+        @for (coluna of colunas; track $index) {
+        <th
+          [class]="{
+            tb2Center: coluna.alignment === 'center',
+            tb2Left: coluna.alignment === 'left',
+            tb2Right: coluna.alignment === 'right'
+          }"
+          style="width: 25%"
+        >
+          {{ coluna.title }}
+        </th>
+        }
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr class="t1">
+        @for (coluna of colunas; track $index) {
+        <td
+          [class]="{
+            tb2Center: coluna.alignment === 'center',
+            tb2Left: coluna.alignment === 'left',
+            tb2Right: coluna.alignment === 'right'
+          }"
+        >
+          @if (coluna.type === 'txt') { @if(coluna.pp === 'cpfCnpj'){
+          {{ coluna.attribute && item[coluna.attribute] | cpfCnpj }}
+          }@else {
+          {{ coluna.attribute && item[coluna.attribute] }}
+          } } @else if (coluna.type === 'btn') { @if (coluna.iconBtn) {
+          <button
+            [ngStyle]="{
+              'background-color': coluna.colorBtn,
+              'border-color': coluna.colorBtn,
+              color: 'white'
+            }"
+            pButton
+            (click)="coluna.actionBtn!(item)"
+            [icon]="coluna.iconBtn"
+          ></button>
+          }@else {
+          <button (click)="coluna.actionBtn!(item)">carregar</button>
+          } }
+        </td>
+        }
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<hr />
+<div class="flex items-center justify-center">
+  <div class="flex-1">
+    <p-paginator
+      (onPageChange)="changePage($event)"
+      [first]="first1"
+      [rows]="rows1"
+      [totalRecords]="totalRecords"
+      [rowsPerPageOptions]="[5, 10, 15]"
+      [showFirstLastIcon]="false"
+    />
+  </div>
+</div>
