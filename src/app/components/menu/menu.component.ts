@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { AuthServiceService } from '../../services/infra/auth-service.service';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
-import { BuildService } from '../../services/build/build.service';
-import { HumanizaHomePage } from '../../page/humaniza-home/humaniza-home.page';
+import ROTAS from '../../constants/rotas.const';
+import { BuildService } from '../../services/infra/build.service';
+import MENUS_APP from '../../constants/menu.const';
 @Component({
   selector: 'app-menu',
   imports: [MenubarModule],
@@ -19,32 +20,30 @@ export class MenuComponent {
   menu: any[] = [];
 
   items: MenuItem[] | undefined;
+  items2: any[] = [
+    {
+      nome: 'Report',
+      rota: '',
+      icon: '',
+    },
+  ];
 
   ngOnInit() {
-    const menusStr = this.authService.getMenus();
+    console.log('dev');
+    const menusStr = MENUS_APP;
     this.items = menusStr.map((item) => {
-      const iMenu = JSON.parse(item);
+      const iMenu = item;
       return {
         label: iMenu.nome,
         target: iMenu.rota,
-        icon: 'pi pi-home',
+        icon: iMenu.icon,
         command: this.click,
         //items:[]
       };
     });
-    this.items.push({
-      label: 'Sair',
-      icon: 'pi pi-home',
-      command: this.sair,
-    });
   }
 
   click = (e: any) => {
-    this.build.getRouteService().nav(`auth/${e.item.target}`);
-  };
-
-  sair = () => {
-    this.build.getStorage().removeItem('token');
-    this.build.getRouteService().nav(HumanizaHomePage.ROTE);
+    this.build.getRouteService().nav(`${ROTAS.BASE_AUTH}/${e.item.target}`);
   };
 }

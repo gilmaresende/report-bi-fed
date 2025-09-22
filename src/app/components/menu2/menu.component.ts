@@ -12,8 +12,9 @@ export class MenuComponent {
 
   menu: any[] = [];
   ngOnInit(): void {
-    const menusStr = this.authService.getMenus();
-    this.menu = menusStr.map((item) => JSON.parse(item));
+    //  const menusStr = this.authService.getMenus();
+    // this.menu = menusStr.map((item) => JSON.parse(item));
+    this.menu = this.menuItems;
   }
 
   expanded = true;
@@ -37,5 +38,9 @@ export class MenuComponent {
         this.expanded = false; // Fecha o menu
       }
     }, 500);
+  }
+
+  toPage(rota: string) {
+    console.log(rota);
   }
 }

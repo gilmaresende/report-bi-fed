@@ -37,18 +37,21 @@ export class AuthServiceService {
     }
   }
 
-  public getMenus(): [] {
-    const token = this.getToken();
-    if (!token) return [];
+  // public getMenus(): [] {
+  //   // const token = this.getToken();
+  //   // if (!token) return [];
 
-    try {
-      const decodedToken = this.jwtHelper.decodeToken(token);
-      return decodedToken?.menus || []; // A claim `permissions` contém as permissões
-    } catch (error) {
-      console.error('Erro ao decodificar o token:', error);
-      return [];
-    }
-  }
+  //   // try {
+  //   //   const decodedToken = this.jwtHelper.decodeToken(token);
+  //   //   return decodedToken?.menus || []; // A claim `permissions` contém as permissões
+  //   // } catch (error) {
+  //   //   console.error('Erro ao decodificar o token:', error);
+  //   //   return [];
+  //   // }
+  //   return [{
+
+  //   }]
+  // }
 
   public saveLogin(login: any) {
     this.localService.saveInf('token', login);

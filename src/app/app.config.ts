@@ -4,7 +4,6 @@ import { provideRouter } from '@angular/router';
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
-  withFetch,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -28,4 +27,3 @@ export const appConfig: ApplicationConfig = {
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
 };
-
