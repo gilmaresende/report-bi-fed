@@ -1,10 +1,11 @@
 <div class="p-1">
+  <button class="bt bt-new" (click)="newReportParametrosBI()">Novo</button>
   <table2 [data]="dataPametros" [colunas]="colunasParametros" />
 </div>
 <model-imp titleModal="Parametros" #modelParametro>
   @if (form) {
   <div class="container p-1">
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="save()">
       <div class="row">
         <div class="col-12">
           <input-text
@@ -62,9 +63,17 @@
           </div>
         </div>
       </div>
+      @if (tipoEntradaSelecionado == tipoDefinido){
+      <app-report-valores-fixos [valoresDefinidos]="valoresDefinidos" />
+      }
+      <div class="row">
+        <div class="col-12 pt-3">
+          <button class="bt bt-save" type="submit" [disabled]="form.invalid">
+            Save
+          </button>
+        </div>
+      </div>
     </form>
   </div>
-  @if (tipoEntradaSelecionado == tipoDefinido){
-  <app-report-valores-fixos [valoresDefinidos]="valoresDefinidos" />
-  } }
+  }
 </model-imp>

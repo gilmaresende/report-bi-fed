@@ -12,10 +12,13 @@ import { ColumnTable } from '../../../../components/table/column-table.model';
 import { Table2Component } from '../../../../components/table/table2/table2.component';
 import { TipoEntradaBIEnum } from '../../../../constants/tipo-entrada-bi';
 import { TipoPrimitivoParametroBIEnum } from '../../../../constants/tipo-primitivo-parametro-bi';
-import { ReportParametrosBI } from '../../../../models/report-parametros-bi';
+import {
+  newReportParametrosBI,
+  ReportParametrosBI,
+} from '../../../../models/report-parametros-bi';
 import { ValorDefinidoFixoBI } from '../../../../models/valor-definido-fixo-bi';
 import { BuildService } from '../../../../services/infra/build.service';
-import { ReportValoresFixosComponent } from "../report-valores-fixos/report-valores-fixos.component";
+import { ReportValoresFixosComponent } from '../report-valores-fixos/report-valores-fixos.component';
 
 @Component({
   selector: 'app-report-entity-parametros',
@@ -26,8 +29,8 @@ import { ReportValoresFixosComponent } from "../report-valores-fixos/report-valo
     ReactiveFormsModule,
     InputTextComponent,
     AutocompleteComponent,
-    ReportValoresFixosComponent
-],
+    ReportValoresFixosComponent,
+  ],
   templateUrl: './report-entity-parametros.component.html',
   styleUrl: './report-entity-parametros.component.scss',
 })
@@ -35,7 +38,7 @@ export class ReportEntityParametrosComponent {
   @Input() dataPametros!: Array<ReportParametrosBI>;
   valoresDefinidos: Array<ValorDefinidoFixoBI> = [];
   id: string = 'detalhe-report';
-
+  itemSelecionado!: ReportParametrosBI;
   tipoEntradaSelecionado!: string;
   tipoPrimitivo = TipoEntradaBIEnum.PRIMITIVO;
   tipoTabela = TipoEntradaBIEnum.TABELA;
@@ -84,6 +87,7 @@ export class ReportEntityParametrosComponent {
   ];
 
   openModal(item: ReportParametrosBI) {
+    this.itemSelecionado = item;
     this.populateForm(item);
     this.modalParametro().showModal();
   }
@@ -105,5 +109,23 @@ export class ReportEntityParametrosComponent {
 
   receberValorTipoEntrada($event: any) {
     this.tipoEntradaSelecionado = $event;
+  }
+
+  save() {
+    const valor = this.form.value as ReportParametrosBI;
+    const itemExistente = this.dataPametros.find(
+      (v) => v === this.itemSelecionado
+    );
+    Object.assign(this.itemSelecionado, valor);
+    if (!itemExistente) {
+      this.dataPametros.push(this.itemSelecionado);
+    }
+    this.modalParametro().fecharModal();
+  }
+
+  newReportParametrosBI() {
+    this.itemSelecionado = newReportParametrosBI();
+    this.populateForm(this.itemSelecionado);
+    this.modalParametro().showModal();
   }
 }
