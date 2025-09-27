@@ -12,6 +12,7 @@ import {
 import { BuildService } from '../../../services/infra/build.service';
 import { ReportEntityDetalheComponent } from './report-entity-detalhe/report-entity-detalhe.component';
 import { ReportEntityParametrosComponent } from './report-entity-parametros/report-entity-parametros.component';
+import { ReportParametrosBI } from '../../../models/report-parametros-bi';
 
 @Component({
   selector: 'app-report-entity',
@@ -31,12 +32,14 @@ export class ReportEntityPage {
   public static ROTE: string = 'report-entity-register';
   static TITLE: string = 'Registro Report';
   form!: FormGroup;
+  dataPametros: Array<ReportParametrosBI> = [];
 
   constructor(private build: BuildService) {
     this.populateForm(newReportBI());
   }
 
   populateForm = async (ob: ReportBI) => {
+    this.dataPametros = ob.parametros;
     this.form = this.build.getFormBuilder().group({
       id: [ob.id],
       descricao: [ob.descricao, [Validators.required, Validators.min(3)]],

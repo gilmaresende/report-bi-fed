@@ -3,3 +3,10 @@ export interface ValorDefinidoFixoBI {
   descricao: string;
   valor: string;
 }
+
+export function newValorDefinidoFixoBI(): ValorDefinidoFixoBI {
+  return {
+    descricao: 'Nome',
+    valor: 'teste',
+  };
+}

@@ -1,10 +1,6 @@
-<div class="card">
-  <p-table
-    [value]="data"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [rowHover]="true"
-  >
-    <ng-template #header>
+<div class="table2">
+  <table>
+    <thead>
       <tr>
         @for (coluna of colunas; track $index) {
         <th
@@ -19,9 +15,10 @@
         </th>
         }
       </tr>
-    </ng-template>
-    <ng-template #body let-item>
-      <tr class="t1">
+    </thead>
+    <tbody>
+      @for (item of data; track $index) {
+      <tr>
         @for (coluna of colunas; track $index) {
         <td
           [class]="{
@@ -51,20 +48,7 @@
         </td>
         }
       </tr>
-    </ng-template>
-  </p-table>
-</div>
-
-<hr />
-<div class="flex items-center justify-center">
-  <div class="flex-1">
-    <p-paginator
-      (onPageChange)="changePage($event)"
-      [first]="first1"
-      [rows]="rows1"
-      [totalRecords]="totalRecords"
-      [rowsPerPageOptions]="[5, 10, 15]"
-      [showFirstLastIcon]="false"
-    />
-  </div>
+      }
+    </tbody>
+  </table>
 </div>

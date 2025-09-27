@@ -1,0 +1,51 @@
+.position-relative {
+  position: relative;
+}
+
+.clear-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px; /* Ajuste o valor dependendo do padding do input */
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+  font-size: 16px;
+  z-index: 2;
+}
+
+.clear-icon:hover {
+  color: #333;
+}
+
+.autocomplete-list {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para o dropdown */
+  margin-top: 2px; /* Distância entre o input e a lista de sugestões */
+}
+
+.autocomplete-item {
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease; /* Transição suave para hover */
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.autocomplete-item.active {
+  background-color: #0056b3; /* Cor mais forte para o item ativo */
+}
+
+.autocomplete-item:not(:last-child) {
+  border-bottom: 1px solid #ddd; /* Linha divisória entre os itens */
+}

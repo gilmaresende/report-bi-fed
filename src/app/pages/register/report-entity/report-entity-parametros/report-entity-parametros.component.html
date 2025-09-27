@@ -1,1 +1,70 @@
-<p>report-entity-parametros works!</p>
+<table2 [data]="dataPametros" [colunas]="colunasParametros" />
+<model-imp #modelParametro>
+  @if (form) {
+  <div class="container">
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-12">
+          <input-text
+            [id]="'descricao_parametro_' + id"
+            [label]="'Descrição'"
+            formControlName="descricao"
+          />
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <input-text
+              [id]="'chave_parametro_' + id"
+              [label]="'Chave'"
+              formControlName="chave"
+            />
+          </div>
+          <div class="col-6">
+            <input-text
+              [id]="'valor_padrao_parametro_' + id"
+              [label]="'Valor Padrão'"
+              formControlName="valorPadrao"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <auto-complete
+              [id]="'tipo_entrada_parametro_' + id"
+              [label]="'Tipo Entrada'"
+              [placeholder]="'Selecione...'"
+              [labelView]="'label'"
+              [attributeValue]="'value'"
+              [listData]="listDataTiposEntrada"
+              formControlName="tipoEntrada"
+              (valueChanged)="receberValorTipoEntrada($event)"
+            />
+          </div>
+          <div class="col-6">
+            @if (tipoEntradaSelecionado == tipoTabela) {
+            <input-text
+              [id]="'tabela_parametro_' + id"
+              [label]="'Tabela'"
+              formControlName="tabela"
+            />
+            }@else if (tipoEntradaSelecionado == tipoPrimitivo) {
+            <auto-complete
+              [id]="'tipo_primitivo_parametro_' + id"
+              [label]="'Tipo Primirivo'"
+              [placeholder]="'Selecione...'"
+              [labelView]="'label'"
+              [attributeValue]="'value'"
+              [listData]="listDataTiposPrimitico"
+              formControlName="tipoPrimitivo"
+            />}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  @if (tipoEntradaSelecionado == tipoDefinido){
+  <div class="container mt-3">
+    <table2 [data]="valoresDefinidos" [colunas]="colunasValoresFixos" />
+  </div>
+  } }
+</model-imp>

@@ -1,0 +1,42 @@
+:host {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th,
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .t1-row {
+    height: 25px;
+    border-bottom: 1px rgb(224, 224, 224) solid;
+  }
+
+  .t1-col {
+    height: 40px;
+    padding-left: 15px;
+    border-bottom: 1px rgb(224, 224, 224) solid;
+  }
+
+  .tb2Center {
+    text-align: center;
+  }
+
+  .tb2Left {
+    text-align: left;
+  }
+
+  .tb2Right {
+    text-align: right;
+  }
+
+  .table2 {
+    background: #fff;
+  }
+}

@@ -1,4 +1,7 @@
-import { TipoEntradaBIEnum } from '../constants/tipo-entrada-bi';
+import {
+  newValorDefinidoFixoBI,
+  ValorDefinidoFixoBI,
+} from './valor-definido-fixo-bi';
 
 export interface ReportParametrosBI {
   id?: number;
@@ -6,9 +9,11 @@ export interface ReportParametrosBI {
   chave: string;
   valorPadrao: string;
   obrigatorio: boolean;
-  tabela: string;
+  tabela?: string;
   posicao: number;
   tipoEntrada: 'PRIMITIVO' | 'TABELA' | 'DEFINIDOS';
+  tipoPrimitivo?: 'INT' | 'STRING' | 'DATE';
+  valoresFixos: Array<ValorDefinidoFixoBI>;
 }
 export function newReportParametrosBI(): ReportParametrosBI {
   return {
@@ -17,7 +22,8 @@ export function newReportParametrosBI(): ReportParametrosBI {
     obrigatorio: true,
     posicao: 1,
     tabela: 'compra',
-    tipoEntrada: 'PRIMITIVO',
+    tipoEntrada: 'TABELA',
     valorPadrao: '',
+    valoresFixos: [newValorDefinidoFixoBI(), newValorDefinidoFixoBI()],
   };
 }
