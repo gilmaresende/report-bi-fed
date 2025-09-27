@@ -1,25 +1,27 @@
-<form [formGroup]="form">
-  <tab>
-    <tab-header
-      [active]="true"
-      [id]="'report-bi-tab'"
-      [label]="'Detalhes'"
-      (tabSelected)="reportDetalheTabBody.activate()"
-    />
-    <tab-header
-      [id]="'report-bi-parametro-tab'"
-      [label]="'Parametros'"
-      (tabSelected)="reportParametroTabBody.activate()"
-    />
-    <tab-body [id]="'report-bi-tab-body'" #reportDetalheTabBody>
-      <div>
-        <app-report-entity-detalhe [form]="form" />
-      </div>
-    </tab-body>
-    <tab-body [id]="'report-bi-parametro-tab-body'" #reportParametroTabBody>
-      <div>
-        <app-report-entity-parametros [dataPametros]="dataPametros" />
-      </div>
-    </tab-body>
-  </tab>
-</form>
+<div class="container card-main">
+  <form [formGroup]="form">
+    <tab>
+      <tab-header
+        [active]="true"
+        [id]="'report-bi-tab'"
+        [label]="'Detalhes'"
+        (tabSelected)="reportDetalheTabBody.activate()"
+      />
+      <tab-header
+        [id]="'report-bi-parametro-tab'"
+        [label]="'Parametros'"
+        (tabSelected)="reportParametroTabBody.activate()"
+      />
+      <tab-body [id]="'report-bi-tab-body'" #reportDetalheTabBody>
+        <div>
+          <app-report-entity-detalhe [form]="form" />
+        </div>
+      </tab-body>
+      <tab-body [id]="'report-bi-parametro-tab-body'" #reportParametroTabBody>
+        <div>
+          <app-report-entity-parametros [dataPametros]="dataPametros" />
+        </div>
+      </tab-body>
+    </tab>
+  </form>
+</div>

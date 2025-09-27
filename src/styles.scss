@@ -118,3 +118,71 @@ body {
   outline: none;
   border: solid #3f51b5 0.3px;
 }
+
+.card-main {
+  border: 1px solid #dbe0ff;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  border-radius: 10px;
+  height: 80vh;
+}
+/*
+  Classe base para o estilo comum dos botões.
+  Tudo que for igual entre os botões "salvar" e "novo" vai aqui.
+*/
+.bt {
+  color: white; /* Texto branco */
+  padding: 6px 24px; /* Espaçamento interno */
+  border: none; /* Remove a borda padrão */
+  border-radius: 4px; /* Cantos arredondados */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+    background-color 0.3s ease;
+}
+
+/*
+  Classe modificadora para o botão "Salvar".
+  Define apenas o que é único: a cor de fundo.
+*/
+.bt-save {
+  background-color: #4caf50; /* Verde */
+}
+
+/*
+  Classe modificadora para o botão "Novo".
+  Define apenas o que é único: a cor de fundo.
+*/
+.bt-new {
+  background-color: #007bff; /* Azul */
+}
+
+/*
+  Classe base para os efeitos ao passar o mouse.
+  Aplica os mesmos efeitos a ambos os botões.
+*/
+.bt:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/*
+  Classes específicas para o efeito de cor no hover.
+*/
+.bt-save:hover {
+  background-color: #45a049; /* Escurece o verde */
+}
+
+.bt-new:hover {
+  background-color: #0056b3; /* Escurece o azul */
+}
+
+/*
+  Classe base para os efeitos ao clicar.
+*/
+.bt:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

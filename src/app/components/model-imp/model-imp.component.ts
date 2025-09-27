@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'model-imp',
@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ModelImpComponent {
   show = false;
+  @Input() titleModal?: string;
 
   fecharModal() {
     this.show = false;

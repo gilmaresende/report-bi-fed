@@ -1,0 +1,33 @@
+<div class="container mt-3">
+  <button class="bt bt-new" (click)="newValordefinido()">Novo</button>
+  <table2 [data]="valoresDefinidos" [colunas]="colunasValoresFixos" />
+  <model-imp titleModal="Valores Fixos" #modelValores>
+    @if (form) {
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="row">
+        <div class="col-6">
+          <input-text
+            [id]="'report_valores_descricao_report_' + id"
+            [label]="'Descrição'"
+            formControlName="descricao"
+          ></input-text>
+        </div>
+        <div class="col-6">
+          <input-text
+            [id]="'report_valores_valor_report_' + id"
+            [label]="'Valor'"
+            formControlName="valor"
+          ></input-text>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 pt-3">
+          <button class="bt bt-save" type="submit" [disabled]="form.invalid">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+    }
+  </model-imp>
+</div>

@@ -1,23 +1,21 @@
 import { Component, Input, viewChild } from '@angular/core';
-import { Table2Component } from '../../../../components/table/table2/table2.component';
-import { ReportParametrosBI } from '../../../../models/report-parametros-bi';
-import { ColumnTable } from '../../../../components/table/column-table.model';
-import { ModelImpComponent } from '../../../../components/model-imp/model-imp.component';
 import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { BuildService } from '../../../../services/infra/build.service';
-import { InputTextComponent } from '../../../../components/input-text/input-text.component';
-import { TabComponent } from '../../../../components/tab/tab.component';
-import { TabHeaderComponent } from '../../../../components/tab/tab-header/tab-header.component';
-import { TabBodyComponent } from '../../../../components/tab/tab-body/tab-body.component';
 import { AutocompleteComponent } from '../../../../components/auto-complete/auto-complete.component';
+import { InputTextComponent } from '../../../../components/input-text/input-text.component';
+import { ModelImpComponent } from '../../../../components/model-imp/model-imp.component';
+import { ColumnTable } from '../../../../components/table/column-table.model';
+import { Table2Component } from '../../../../components/table/table2/table2.component';
 import { TipoEntradaBIEnum } from '../../../../constants/tipo-entrada-bi';
 import { TipoPrimitivoParametroBIEnum } from '../../../../constants/tipo-primitivo-parametro-bi';
+import { ReportParametrosBI } from '../../../../models/report-parametros-bi';
 import { ValorDefinidoFixoBI } from '../../../../models/valor-definido-fixo-bi';
+import { BuildService } from '../../../../services/infra/build.service';
+import { ReportValoresFixosComponent } from "../report-valores-fixos/report-valores-fixos.component";
 
 @Component({
   selector: 'app-report-entity-parametros',
@@ -28,7 +26,8 @@ import { ValorDefinidoFixoBI } from '../../../../models/valor-definido-fixo-bi';
     ReactiveFormsModule,
     InputTextComponent,
     AutocompleteComponent,
-  ],
+    ReportValoresFixosComponent
+],
   templateUrl: './report-entity-parametros.component.html',
   styleUrl: './report-entity-parametros.component.scss',
 })
@@ -72,30 +71,6 @@ export class ReportEntityParametrosComponent {
       title: 'Primitivo',
       type: 'txt',
       attribute: 'tipoEntrada',
-    },
-    {
-      alignment: 'center',
-      title: 'Carregar',
-      type: 'btn',
-      attribute: 'documento',
-      iconBtn: 'pi pi-eye',
-      colorBtn: '#0eabe3',
-      actionBtn: (e) => this.openModal(e),
-    },
-  ];
-
-  colunasValoresFixos: ColumnTable[] = [
-    {
-      type: 'txt',
-      title: 'Descrição',
-      alignment: 'left',
-      attribute: 'descricao',
-    },
-    {
-      alignment: 'left',
-      title: 'Valor',
-      type: 'txt',
-      attribute: 'valor',
     },
     {
       alignment: 'center',
