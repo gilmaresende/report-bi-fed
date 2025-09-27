@@ -1,6 +1,6 @@
-import { HomePage } from '../pages/base/home/home.page';
-import { ReportEntityPage } from '../pages/register/report-entity/report-entity.page';
-import { ReportListPage } from '../pages/register/report-list/report-list.page';
+import { HomePage } from '../../pages/base/home/home.page';
+import { ReportEntityPage } from '../../pages/register/report-entity/report-entity.page';
+import { ReportListPage } from '../../pages/register/report-list/report-list.page';
 
 interface MenuRota {
   nome: string;

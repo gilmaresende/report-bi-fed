@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { AuthServiceService } from '../../services/infra/auth-service.service';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
-import ROTAS from '../../constants/rotas.const';
 import { BuildService } from '../../services/infra/build.service';
-import MENUS_APP from '../../constants/menu.const';
+import ROTAS from '../../core/constants/rotas.const';
+import MENUS_APP from '../../core/constants/menu.const';
 @Component({
   selector: 'app-menu',
   imports: [MenubarModule],
@@ -29,7 +29,6 @@ export class MenuComponent {
   ];
 
   ngOnInit() {
-    console.log('dev');
     const menusStr = MENUS_APP;
     this.items = menusStr.map((item) => {
       const iMenu = item;

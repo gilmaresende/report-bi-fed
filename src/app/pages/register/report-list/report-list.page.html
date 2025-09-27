@@ -1,1 +1,22 @@
-<p>report-list works!</p>
+<div class="m-4">
+  <h3 class="title3">Cliente</h3>
+  <button (click)="goToNewReportAction()" class="bt btn-3">Novo</button>
+  <div>
+    <input
+      [(ngModel)]="nomeFilter"
+      (keydown.enter)="onEnterFilter()"
+      class="input-filter"
+      type="text"
+      placeholder="Filtro Nome"
+    />
+    <table-1
+      [colunas]="colunas"
+      (eventPage)="eventPage($event)"
+      [data]="listaCliente"
+      [totalRecords]="totalRecords"
+    ></table-1>
+  </div>
+  <model-imp #modelCliente>
+    <!-- <app-cliente-frame #frameCliente (closeModal)="fecharEReload()" /> -->
+  </model-imp>
+</div>

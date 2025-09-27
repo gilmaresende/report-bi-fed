@@ -5,7 +5,6 @@ import { ButtonModule } from 'primeng/button';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { ColumnTable } from '../column-table.model';
-import { CpfCnpjPipe } from '../../../pipes/cpf-cnpj/cpf-cnpj.pipe';
 @Component({
   selector: 'table-1',
   templateUrl: './table1.component.html',
@@ -16,7 +15,6 @@ import { CpfCnpjPipe } from '../../../pipes/cpf-cnpj/cpf-cnpj.pipe';
     FormsModule,
     ButtonModule,
     PaginatorModule,
-    CpfCnpjPipe,
   ],
 })
 export class Table1Component {
