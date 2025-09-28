@@ -1,5 +1,7 @@
 <div class="p-1">
-  <button class="bt bt-new" (click)="newReportParametrosBI()">Novo</button>
+  <button class="bt bt-new" type="button" (click)="newReportParametrosBI()">
+    Novo
+  </button>
   <table2 [data]="dataPametros" [colunas]="colunasParametros" />
 </div>
 <model-imp titleModal="Parametros" #modelParametro>

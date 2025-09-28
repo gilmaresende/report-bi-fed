@@ -17,6 +17,7 @@ import { ReportEntityDetalheComponent } from './report-entity-detalhe/report-ent
 import { ReportEntityParametrosComponent } from './report-entity-parametros/report-entity-parametros.component';
 import { ReportEntityQueryComponent } from './report-entity-query/report-entity-query.component';
 import { ReportApiService } from '../../../services/api/report-api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-report-entity',
@@ -43,9 +44,17 @@ export class ReportEntityPage {
 
   constructor(
     private build: BuildService,
-    private seriveReport: ReportApiService
+    private seriveReport: ReportApiService,
+    private activatedRoutes: ActivatedRoute
   ) {
-    this.populateForm(newReportBI());
+    const id = this.activatedRoutes.snapshot.params['id'];
+    console.log('id', this.activatedRoutes.snapshot.params);
+    if (id) {
+      this.seriveReport.getById(id).subscribe((ret) => {
+        console.log('ret', ret);
+        this.populateForm(ret.body);
+      });
+    } else this.populateForm(newReportBI());
   }
 
   populateForm = async (ob: ReportBI) => {
@@ -59,7 +68,6 @@ export class ReportEntityPage {
   };
 
   openModalQuery() {
-    console.log('openModalQuery', this.query);
     this.modelQueryFilha().showModal();
   }
 

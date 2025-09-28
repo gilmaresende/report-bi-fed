@@ -12,8 +12,6 @@ export const routes: Routes = [
     path: ReportListPage.ROTE,
     component: ReportListPage,
   },
-  {
-    path: ReportEntityPage.ROTE,
-    component: ReportEntityPage,
-  },
+  { path: ReportEntityPage.ROTE, component: ReportEntityPage },
+  { path: `${ReportEntityPage.ROTE}/:id`, component: ReportEntityPage },
 ];

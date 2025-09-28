@@ -79,10 +79,17 @@ export class ReportEntityParametrosComponent {
       alignment: 'center',
       title: 'Carregar',
       type: 'btn',
-      attribute: 'documento',
       iconBtn: 'pi pi-eye',
       colorBtn: '#0eabe3',
       actionBtn: (e) => this.openModal(e),
+    },
+    {
+      alignment: 'center',
+      title: 'Remover',
+      type: 'btn',
+      iconBtn: 'pi pi-trash',
+      colorBtn: '#e32e0eff',
+      actionBtn: (e) => this.remove(e),
     },
   ];
 
@@ -90,6 +97,14 @@ export class ReportEntityParametrosComponent {
     this.itemSelecionado = item;
     this.populateForm(item);
     this.modalParametro().showModal();
+  }
+
+  remove(e: any): void | undefined {
+    const index = this.dataPametros.findIndex((v) => v === e);
+    if (index === -1) {
+      return;
+    }
+    this.dataPametros.splice(index, 1);
   }
 
   populateForm = async (ob: ReportParametrosBI) => {
@@ -113,6 +128,7 @@ export class ReportEntityParametrosComponent {
 
   save() {
     const valor = this.form.value as ReportParametrosBI;
+    valor.valoresFixos = this.valoresDefinidos;
     const valido: boolean = this.validarParametro(valor);
     if (!valido) {
       return;
@@ -139,11 +155,13 @@ export class ReportEntityParametrosComponent {
       this.build
         .getToastService()
         .warn('Descrição é obrigatória e deve ter no mínimo 3 caracteres.');
+      return false;
     }
     if (!valor.chave || valor.chave.length < 3) {
       this.build
         .getToastService()
         .warn('Chave é obrigatória e deve ter no mínimo 3 caracteres.');
+      return false;
     }
     if (!valor.valorPadrao) {
       this.build.getToastService().warn('Valor Padrão é Obrigatório.');

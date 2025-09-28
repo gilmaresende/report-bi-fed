@@ -1,7 +1,4 @@
-import {
-  newValorDefinidoFixoBI,
-  ValorDefinidoFixoBI,
-} from './valor-definido-fixo-bi';
+import { ValorDefinidoFixoBI } from './valor-definido-fixo-bi';
 
 export interface ReportParametrosBI {
   id?: number;
@@ -17,13 +14,13 @@ export interface ReportParametrosBI {
 }
 export function newReportParametrosBI(): ReportParametrosBI {
   return {
-    chave: 'chave',
-    descricao: 'teste',
+    chave: '',
+    descricao: '',
     obrigatorio: true,
     posicao: 1,
-    tabela: 'compra',
+    tabela: '',
     tipoEntrada: 'TABELA',
     valorPadrao: '',
-    valoresFixos: [newValorDefinidoFixoBI(), newValorDefinidoFixoBI()],
+    valoresFixos: [],
   };
 }

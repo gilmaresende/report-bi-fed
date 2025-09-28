@@ -10,30 +10,10 @@ export interface QueryBI {
 
 export function newQueryBI(): QueryBI {
   return {
-    descricao: 'teste 1',
-    chave: 'teste',
-    principal: true,
-    queryStr: 'select',
-    querysFilhas: [newQueryBITmp(), newQueryBITmp()],
-  };
-}
-
-function newQueryBITmp(): QueryBI {
-  return {
-    descricao: 'teste 2',
-    chave: 'teste',
+    descricao: '',
+    chave: '',
     principal: false,
-    queryStr: 'select',
-    querysFilhas: [newQueryBITmp2()],
-  };
-}
-
-function newQueryBITmp2(): QueryBI {
-  return {
-    descricao: 'teste 3',
-    chave: 'teste',
-    principal: false,
-    queryStr: 'select',
+    queryStr: '',
     querysFilhas: [],
   };
 }

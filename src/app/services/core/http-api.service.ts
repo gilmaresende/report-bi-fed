@@ -23,4 +23,8 @@ export class HttpApiService {
   putApi(complementoUrl: string, data: any): Observable<ResponseApi<any>> {
     return this.httpSuper.put(`${this.rote}/${complementoUrl}`, data);
   }
+
+  deleteApi(complementoUrl: string): Observable<ResponseApi<any>> {
+    return this.httpSuper.delete(`${this.rote}/${complementoUrl}`);
+  }
 }

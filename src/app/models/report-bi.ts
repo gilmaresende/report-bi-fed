@@ -1,7 +1,6 @@
 import { newQueryBI, QueryBI } from './query-bi';
 import {
-  newReportParametrosBI,
-  ReportParametrosBI,
+  ReportParametrosBI
 } from './report-parametros-bi';
 
 export interface ReportBI {
@@ -13,10 +12,12 @@ export interface ReportBI {
 }
 
 export function newReportBI(): ReportBI {
+  const query = newQueryBI();
+  query.principal = true;
   return {
-    descricao: 'teste',
+    descricao: '',
     ativo: true,
-    parametros: [newReportParametrosBI()],
-    query: newQueryBI(),
+    parametros: [],
+    query: query,
   };
 }

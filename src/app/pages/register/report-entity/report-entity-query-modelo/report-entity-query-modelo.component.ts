@@ -41,7 +41,7 @@ export class ReportEntityQueryModeloComponent implements OnInit {
       id: [ob.id],
       descricao: [ob.descricao, [Validators.required, Validators.min(3)]],
       chave: [ob.chave, [Validators.required, Validators.min(3)]],
-      principal: [ob.chave],
+      principal: [ob.principal],
       queryStr: [ob.queryStr, [Validators.required, Validators.min(3)]],
       conteudoJasper: [ob.conteudoJasper],
     });
@@ -93,8 +93,9 @@ export class ReportEntityQueryModeloComponent implements OnInit {
         .warn('Query deve ter no mínimo 3 caracteres');
       return false;
     }
+    console.log(valor);
     if (
-      !valor.principal ||
+      !valor.principal &&
       !valor.conteudoJasper ||
       (valor.conteudoJasper && valor.conteudoJasper.trim().length === 0)
     ) {

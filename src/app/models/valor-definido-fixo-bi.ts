@@ -6,7 +6,7 @@ export interface ValorDefinidoFixoBI {
 
 export function newValorDefinidoFixoBI(): ValorDefinidoFixoBI {
   return {
-    descricao: 'Nome',
-    valor: 'teste',
+    descricao: '',
+    valor: '',
   };
 }

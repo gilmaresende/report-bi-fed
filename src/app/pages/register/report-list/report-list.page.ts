@@ -9,15 +9,11 @@ import { Table1Component } from '../../../components/table/table1/table1.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BuildService } from '../../../services/infra/build.service';
 import { ReportEntityPage } from '../report-entity/report-entity.page';
+import { ReportBI } from '../../../models/report-bi';
 
 @Component({
   selector: 'app-report-list',
-  imports: [
-    Table1Component,
-    ModelImpComponent,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [Table1Component, FormsModule, ReactiveFormsModule],
   templateUrl: './report-list.page.html',
   styleUrl: './report-list.page.scss',
 })
@@ -25,14 +21,10 @@ export class ReportListPage implements OnInit {
   public static TITLE: string = 'Lista relatórios';
   public static ROTE: string = 'report-list-register';
 
-  listaCliente: any;
+  listaReports: Array<any> = [];
   totalRecords = 1;
 
   nomeFilter: string = '';
-
-  //modelCliente = viewChild.required<ModelImpComponent>('modelCliente');
-
-  //frameCliente = viewChild.required<any>('frameCliente');
 
   page: ParamPage = {
     page: 0,
@@ -42,24 +34,25 @@ export class ReportListPage implements OnInit {
   colunas: ColumnTable[] = [
     {
       type: 'txt',
-      title: 'Nome',
+      title: 'Descrição',
       alignment: 'left',
-      attribute: 'nome',
-    },
-    {
-      alignment: 'left',
-      title: 'Documento',
-      type: 'txt',
-      attribute: 'documento',
-      pp: 'cpfCnpj',
+      attribute: 'descricao',
     },
     {
       alignment: 'center',
       title: 'Carregar',
       type: 'btn',
-      attribute: 'documento',
       iconBtn: 'pi pi-eye',
       colorBtn: '#0eabe3',
+      actionBtn: (e) => this.goToReportAction(e),
+    },
+    {
+      alignment: 'center',
+      title: 'Remover',
+      type: 'btn',
+      iconBtn: 'pi pi-trash',
+      colorBtn: '#e31c0eff',
+      actionBtn: (e) => this.removeReportAction(e),
     },
   ];
   constructor(
@@ -72,16 +65,24 @@ export class ReportListPage implements OnInit {
 
   find() {
     this.serviceApi.getAll().subscribe((data) => {
-      console.log(data);
-      // this.frameCliente().populate(data.body);
-      //this.modelCliente().showModal();
+      this.listaReports = data.body || [];
+      this.totalRecords = this.listaReports.length;
+    });
+  }
+
+  removeReportAction(e: ReportBI): void | undefined {
+    this.serviceApi.remove(e.id!).subscribe((ret) => {
+      this.build.getToastService().inf('Relatório removido');
+      this.find();
     });
   }
 
   goToNewReportAction() {
     this.build.getRouteService().nav(ReportEntityPage.ROTE);
-    // this.frameCliente().populate(instaceCliente());
-    // this.modelCliente().showModal();
+  }
+
+  goToReportAction(e: any): void | undefined {
+    this.build.getRouteService().nav(`${ReportEntityPage.ROTE}/${e.id}`);
   }
 
   onEnterFilter() {
