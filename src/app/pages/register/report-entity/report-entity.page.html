@@ -1,7 +1,7 @@
 @if (form) {
 
 <div class="container card-main">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (submit)="save()">
     <tab>
       <tab-header
         [active]="true"
@@ -30,15 +30,14 @@
         </div>
       </tab-body>
       <tab-body [id]="'report-bi-query-tab-body'" #reportQueryTabBody>
-        <!-- <button (click)="openModalQuery()">Abrir Query</button>
-        <div>
-          <model-imp titleModal="Query" #modelQuery>
-            <app-report-entity-query-modelo [query]="query" />
-          </model-imp>
-        </div> -->
         <app-report-entity-query [query]="query" />
       </tab-body>
     </tab>
+    <div class="row">
+      <div class="col-12 pt-3">
+        <button class="bt bt-save">Save</button>
+      </div>
+    </div>
   </form>
 </div>
 

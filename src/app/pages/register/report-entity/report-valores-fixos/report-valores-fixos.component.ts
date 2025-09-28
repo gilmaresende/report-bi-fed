@@ -76,6 +76,12 @@ export class ReportValoresFixosComponent {
 
   save() {
     const valor = this.form.value as ValorDefinidoFixoBI;
+
+    const valido: boolean = this.validarValor(valor);
+    if (!valido) {
+      return;
+    }
+
     const itemExistente = this.valoresDefinidos.find(
       (v) => v === this.itemSelecionado
     );
@@ -84,6 +90,17 @@ export class ReportValoresFixosComponent {
       this.valoresDefinidos.push(this.itemSelecionado);
     }
     this.modelValores().fecharModal();
+  }
+  validarValor(valor: ValorDefinidoFixoBI): boolean {
+    if (!valor.descricao || valor.descricao.trim().length === 0) {
+      alert('A descrição é obrigatória.');
+      return false;
+    }
+    if (!valor.valor || valor.valor.trim().length === 0) {
+      alert('O valor é obrigatório.');
+      return false;
+    }
+    return true;
   }
 
   newValordefinido() {

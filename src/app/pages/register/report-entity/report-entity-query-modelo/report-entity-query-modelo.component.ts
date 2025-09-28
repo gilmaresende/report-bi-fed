@@ -65,9 +65,44 @@ export class ReportEntityQueryModeloComponent implements OnInit {
   ];
 
   save() {
-    console.log('save', this.form.value);
     const valor = this.form.value as QueryBI;
+
+    const valido: boolean = this.validarQuery(valor);
+    if (!valido) {
+      return;
+    }
     Object.assign(this.query, valor);
     this.eventCloseModal.emit();
+  }
+  validarQuery(valor: QueryBI): boolean {
+    if (valor.descricao.length < 3) {
+      this.build
+        .getToastService()
+        .warn('Descrição deve ter no mínimo 3 caracteres');
+      return false;
+    }
+    if (valor.chave.length < 3) {
+      this.build
+        .getToastService()
+        .warn('Chave deve ter no mínimo 3 caracteres');
+      return false;
+    }
+    if (valor.queryStr.length < 3) {
+      this.build
+        .getToastService()
+        .warn('Query deve ter no mínimo 3 caracteres');
+      return false;
+    }
+    if (
+      !valor.principal ||
+      !valor.conteudoJasper ||
+      (valor.conteudoJasper && valor.conteudoJasper.trim().length === 0)
+    ) {
+      this.build
+        .getToastService()
+        .warn('Query filha deve ter o conteúdo jasper preenchido');
+      return false;
+    }
+    return true;
   }
 }

@@ -1,20 +1,33 @@
 <div class="item-view">
   <div class="a">{{ query.descricao }}</div>
   <div class="item-view-b">
-    <button class="btn-action btn-view" (click)="novoFilhoAction()">
+    <button
+      type="button"
+      class="btn-action btn-view"
+      (click)="novoFilhoAction()"
+    >
       Novo
     </button>
 
-    <button class="btn-action btn-edit" (click)="carregarAction()">
+    <button
+      type="button"
+      class="btn-action btn-edit"
+      (click)="carregarAction()"
+    >
       Carregar
     </button>
 
-    <button class="btn-action btn-delete" (click)="carregarAction()">
+    @if (!query.principal) {
+    <button
+      type="button"
+      class="btn-action btn-delete"
+      (click)="removerAction()"
+    >
       Delete
     </button>
-
-    @if (showChildrenn) {
+    } @if (showChildrenn) {
     <button
+      type="button"
       class="btn-action btn-view container-expansao"
       (click)="mostrarFilhos()"
     >
@@ -24,6 +37,7 @@
     </button>
     }@else {
     <button
+      type="button"
       class="btn-action btn-view container-expansao"
       (click)="mostrarFilhos()"
     >
@@ -36,7 +50,10 @@
 </div>
 @if(showChildrenn){ @for (item of query.querysFilhas; track $index) {
 <div class="item-filho">
-  <app-report-entity-query-item [query]="item" />
+  <app-report-entity-query-item
+    [query]="item"
+    (eventDelete)="removerFilho($event)"
+  />
 </div>
 } }
 

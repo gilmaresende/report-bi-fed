@@ -16,6 +16,7 @@ import { BuildService } from '../../../services/infra/build.service';
 import { ReportEntityDetalheComponent } from './report-entity-detalhe/report-entity-detalhe.component';
 import { ReportEntityParametrosComponent } from './report-entity-parametros/report-entity-parametros.component';
 import { ReportEntityQueryComponent } from './report-entity-query/report-entity-query.component';
+import { ReportApiService } from '../../../services/api/report-api.service';
 
 @Component({
   selector: 'app-report-entity',
@@ -40,7 +41,10 @@ export class ReportEntityPage {
   dataPametros: Array<ReportParametrosBI> = [];
   modelQueryFilha = viewChild.required<ModelImpComponent>('modelQuery');
 
-  constructor(private build: BuildService) {
+  constructor(
+    private build: BuildService,
+    private seriveReport: ReportApiService
+  ) {
     this.populateForm(newReportBI());
   }
 
@@ -57,5 +61,13 @@ export class ReportEntityPage {
   openModalQuery() {
     console.log('openModalQuery', this.query);
     this.modelQueryFilha().showModal();
+  }
+
+  save() {
+    const valor = this.form.value as ReportBI;
+    Object.assign(valor, { query: this.query, parametros: this.dataPametros });
+    this.seriveReport.save(valor).subscribe((ret) => {
+      console.log('ret', ret);
+    });
   }
 }

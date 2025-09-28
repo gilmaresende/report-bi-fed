@@ -33,6 +33,7 @@
           {{ coluna.attribute && item[coluna.attribute] }}
           } } @else if (coluna.type === 'btn') { @if (coluna.iconBtn) {
           <button
+            type="button"
             [ngStyle]="{
               'background-color': coluna.colorBtn,
               'border-color': coluna.colorBtn,

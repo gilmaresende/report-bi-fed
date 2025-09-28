@@ -113,6 +113,11 @@ export class ReportEntityParametrosComponent {
 
   save() {
     const valor = this.form.value as ReportParametrosBI;
+    const valido: boolean = this.validarParametro(valor);
+    if (!valido) {
+      return;
+    }
+
     const itemExistente = this.dataPametros.find(
       (v) => v === this.itemSelecionado
     );
@@ -127,5 +132,47 @@ export class ReportEntityParametrosComponent {
     this.itemSelecionado = newReportParametrosBI();
     this.populateForm(this.itemSelecionado);
     this.modalParametro().showModal();
+  }
+
+  validarParametro(valor: ReportParametrosBI): boolean {
+    if (!valor.descricao || valor.descricao.length < 3) {
+      this.build
+        .getToastService()
+        .warn('Descrição é obrigatória e deve ter no mínimo 3 caracteres.');
+    }
+    if (!valor.chave || valor.chave.length < 3) {
+      this.build
+        .getToastService()
+        .warn('Chave é obrigatória e deve ter no mínimo 3 caracteres.');
+    }
+    if (!valor.valorPadrao) {
+      this.build.getToastService().warn('Valor Padrão é Obrigatório.');
+      return false;
+    }
+    if (!valor.tipoEntrada) {
+      this.build.getToastService().warn('Tipo Entrada é Obrigatória.');
+      return false;
+    }
+    if (valor.tipoEntrada === TipoEntradaBIEnum.TABELA && !valor.tabela) {
+      this.build.getToastService().warn('Tabela é Obrigatória.');
+      return false;
+    }
+    if (
+      valor.tipoEntrada === TipoEntradaBIEnum.PRIMITIVO &&
+      !valor.tipoPrimitivo
+    ) {
+      this.build.getToastService().warn('Tipo Primitivo é Obrigatório.');
+      return false;
+    }
+    if (
+      valor.tipoEntrada === TipoEntradaBIEnum.DEFINIDOS &&
+      (!valor.valoresFixos || valor.valoresFixos.length === 0)
+    ) {
+      this.build
+        .getToastService()
+        .warn('Deve ser informado ao menos um valor definido.');
+      return false;
+    }
+    return true;
   }
 }

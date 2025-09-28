@@ -1,5 +1,7 @@
 <div class="container mt-3">
-  <button class="bt bt-new" (click)="newValordefinido()">Novo</button>
+  <button class="bt bt-new" type="button" (click)="newValordefinido()">
+    Novo
+  </button>
   <table2 [data]="valoresDefinidos" [colunas]="colunasValoresFixos" />
   <model-imp titleModal="Valores Fixos" #modelValores>
     @if (form) {

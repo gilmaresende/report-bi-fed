@@ -3,6 +3,7 @@ import { HttpApiService } from '../core/http-api.service';
 import { HttpService } from '../core/http.service';
 import { ResponseApi } from '../core/response-api';
 import { Observable } from 'rxjs';
+import { ReportBI } from '../../models/report-bi';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,11 @@ export class ReportApiService extends HttpApiService {
     super(http);
   }
 
-  getAll(): Observable<ResponseApi<any>> {
+  getAll(): Observable<ResponseApi<Array<ReportBI>>> {
     return this.getApi('report');
+  }
+
+  save(ob: ReportBI): Observable<ResponseApi<ReportBI>> {
+    return this.postApi('report', ob);
   }
 }
