@@ -19,6 +19,8 @@ import {
 import { ValorDefinidoFixoBI } from '../../../../models/valor-definido-fixo-bi';
 import { BuildService } from '../../../../services/infra/build.service';
 import { ReportValoresFixosComponent } from '../report-valores-fixos/report-valores-fixos.component';
+import { ICONS } from '../../../../core/constants/icons.const';
+import { CORES } from '../../../../core/constants/cores.const';
 
 @Component({
   selector: 'app-report-entity-parametros',
@@ -79,16 +81,16 @@ export class ReportEntityParametrosComponent {
       alignment: 'center',
       title: 'Carregar',
       type: 'btn',
-      iconBtn: 'pi pi-eye',
-      colorBtn: '#0eabe3',
+      iconBtn: ICONS.VIEW,
+      colorBtn: CORES.VIEW,
       actionBtn: (e) => this.openModal(e),
     },
     {
       alignment: 'center',
       title: 'Remover',
       type: 'btn',
-      iconBtn: 'pi pi-trash',
-      colorBtn: '#e32e0eff',
+      iconBtn: ICONS.TRASH,
+      colorBtn: CORES.TRASH,
       actionBtn: (e) => this.remove(e),
     },
   ];
@@ -192,5 +194,13 @@ export class ReportEntityParametrosComponent {
       return false;
     }
     return true;
+  }
+
+  removerValorDefinido($event: ValorDefinidoFixoBI) {
+    const index = this.valoresDefinidos.findIndex((v) => v === $event);
+    if (index === -1) {
+      return;
+    }
+    this.valoresDefinidos.splice(index, 1);
   }
 }

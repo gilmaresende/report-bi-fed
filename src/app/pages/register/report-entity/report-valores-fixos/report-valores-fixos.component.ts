@@ -1,4 +1,10 @@
-import { Component, Input, viewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  viewChild,
+} from '@angular/core';
 import { ColumnTable } from '../../../../components/table/column-table.model';
 import {
   newValorDefinidoFixoBI,
@@ -14,6 +20,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { InputTextComponent } from '../../../../components/input-text/input-text.component';
+import { CORES } from '../../../../core/constants/cores.const';
+import { ICONS } from '../../../../core/constants/icons.const';
 
 @Component({
   selector: 'app-report-valores-fixos',
@@ -28,6 +36,8 @@ import { InputTextComponent } from '../../../../components/input-text/input-text
   styleUrl: './report-valores-fixos.component.scss',
 })
 export class ReportValoresFixosComponent {
+  @Output() eventRemoveValor = new EventEmitter<ValorDefinidoFixoBI>();
+
   @Input() valoresDefinidos!: Array<ValorDefinidoFixoBI>;
   modelValores = viewChild.required<ModelImpComponent>('modelValores');
   form!: FormGroup;
@@ -54,11 +64,24 @@ export class ReportValoresFixosComponent {
       title: 'Carregar',
       type: 'btn',
       attribute: 'documento',
-      iconBtn: 'pi pi-eye',
-      colorBtn: '#0eabe3',
+      iconBtn: ICONS.VIEW,
+      colorBtn: CORES.VIEW,
       actionBtn: (e) => this.openModal(e),
     },
+    {
+      alignment: 'center',
+      title: 'Carregar',
+      type: 'btn',
+      attribute: 'documento',
+      iconBtn: ICONS.TRASH,
+      colorBtn: CORES.TRASH,
+      actionBtn: (e) => this.removeValor(e),
+    },
   ];
+
+  removeValor(e: any): void | undefined {
+    this.eventRemoveValor.emit(e);
+  }
 
   openModal(item: any) {
     this.itemSelecionado = item;
