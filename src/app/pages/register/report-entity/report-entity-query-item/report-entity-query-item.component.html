@@ -1,0 +1,50 @@
+<div class="item-view">
+  <div class="a">{{ query.descricao }}</div>
+  <div class="item-view-b">
+    <button class="btn-action btn-view" (click)="novoFilhoAction()">
+      Novo
+    </button>
+
+    <button class="btn-action btn-edit" (click)="carregarAction()">
+      Carregar
+    </button>
+
+    <button class="btn-action btn-delete" (click)="carregarAction()">
+      Delete
+    </button>
+
+    @if (showChildrenn) {
+    <button
+      class="btn-action btn-view container-expansao"
+      (click)="mostrarFilhos()"
+    >
+      <div class="container-expansao">
+        <div class="icone-seta-cima"></div>
+      </div>
+    </button>
+    }@else {
+    <button
+      class="btn-action btn-view container-expansao"
+      (click)="mostrarFilhos()"
+    >
+      <div class="container-expansao">
+        <div class="icone-seta"></div>
+      </div>
+    </button>
+    }
+  </div>
+</div>
+@if(showChildrenn){ @for (item of query.querysFilhas; track $index) {
+<div class="item-filho">
+  <app-report-entity-query-item [query]="item" />
+</div>
+} }
+
+<div>
+  <model-imp titleModal="Query" #modelQuery>
+    <app-report-entity-query-modelo
+      [query]="query"
+      (eventCloseModal)="closeModal()"
+    />
+  </model-imp>
+</div>

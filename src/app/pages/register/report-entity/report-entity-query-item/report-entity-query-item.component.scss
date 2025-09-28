@@ -1,0 +1,48 @@
+:host {
+  .item-view {
+    background: #dbe0ff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid rgb(211, 34, 255);
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
+
+  .item-view-b {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .item-filho {
+    margin-left: 20px;
+  }
+
+  .container-expansao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  /* O ícone da seta em si */
+  .icone-seta {
+    width: 10px;
+    height: 10px;
+    border: solid rgb(255, 255, 255);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    transform: rotate(45deg); /* Gira para formar uma seta para baixo */
+  }
+
+  /* O ícone da seta em si */
+  .icone-seta-cima {
+    width: 10px;
+    height: 10px;
+    border: solid rgb(255, 255, 255);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    transform: rotate(-135deg); /* Gira para formar uma seta para cima */
+  }
+}

@@ -1,0 +1,48 @@
+@if (form) {
+<form [formGroup]="form" (submit)="save()">
+  <div>
+    <div class="row">
+      <div class="col-12">
+        <input-text
+          [id]="'descricao_parametro_query_' + id"
+          [label]="'Descrição'"
+          formControlName="descricao"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <input-text
+          [id]="'chave_parametro_query_' + id"
+          [label]="'Chave'"
+          formControlName="chave"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <input-area
+          [id]="'querystr_parametro_query_' + id"
+          [label]="'Query'"
+          formControlName="queryStr"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <input-area
+          [id]="'jasper_parametro_query_' + id"
+          [label]="'Jasper'"
+          formControlName="conteudoJasper"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 pt-3">
+      <button class="bt bt-save">Save</button>
+    </div>
+  </div>
+</form>
+
+}
