@@ -73,18 +73,6 @@ export class InputCheckComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  validate(control: AbstractControl): ValidationErrors | null {
-    const quantity = control.value;
-    if (quantity <= 0) {
-      return {
-        mustBePositive: {
-          quantity,
-        },
-      };
-    }
-    return null;
-  }
-
   change() {
     this.value = !this.value;
     this.onChange(this.value);

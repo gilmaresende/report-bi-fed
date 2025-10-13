@@ -21,6 +21,7 @@ import { BuildService } from '../../../../services/infra/build.service';
 import { ReportValoresFixosComponent } from '../report-valores-fixos/report-valores-fixos.component';
 import { ICONS } from '../../../../core/constants/icons.const';
 import { CORES } from '../../../../core/constants/cores.const';
+import { InputCheckComponent } from '../../../../components/input-check/input-check.component';
 
 @Component({
   selector: 'app-report-entity-parametros',
@@ -32,6 +33,7 @@ import { CORES } from '../../../../core/constants/cores.const';
     InputTextComponent,
     AutocompleteComponent,
     ReportValoresFixosComponent,
+    InputCheckComponent,
   ],
   templateUrl: './report-entity-parametros.component.html',
   styleUrl: './report-entity-parametros.component.scss',
@@ -70,6 +72,12 @@ export class ReportEntityParametrosComponent {
       title: 'Descrição',
       alignment: 'left',
       attribute: 'descricao',
+    },
+    {
+      type: 'txt',
+      title: 'Chave',
+      alignment: 'left',
+      attribute: 'chave',
     },
     {
       alignment: 'left',
@@ -120,6 +128,7 @@ export class ReportEntityParametrosComponent {
       tabela: ob.tabela,
       tipoEntrada: ob.tipoEntrada,
       valorPadrao: ob.valorPadrao,
+      obrigatorio: [ob.obrigatorio],
       tipoPrimitivo: ob.tipoPrimitivo,
     });
   };

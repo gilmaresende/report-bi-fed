@@ -32,6 +32,15 @@
             />
           </div>
         </div>
+        <div class="row mt-2 mb-2">
+          <div class="col-12">
+            <input-check
+              [id]="'obrigatorio_parametro_report_' + id"
+              [label]="'Obrigatório'"
+              formControlName="obrigatorio"
+            />
+          </div>
+        </div>
         <div class="row">
           <div class="col-6">
             <auto-complete
@@ -66,9 +75,10 @@
         </div>
       </div>
       @if (tipoEntradaSelecionado == tipoDefinido){
-      <app-report-valores-fixos 
-      (eventRemoveValor)="removerValorDefinido($event)"
-      [valoresDefinidos]="valoresDefinidos" />
+      <app-report-valores-fixos
+        (eventRemoveValor)="removerValorDefinido($event)"
+        [valoresDefinidos]="valoresDefinidos"
+      />
       }
       <div class="row">
         <div class="col-12 pt-3">
