@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BuildService } from '../../../services/infra/build.service';
 import { ReportEntityPage } from '../report-entity/report-entity.page';
 import { ReportBI } from '../../../models/report-bi';
+import { ReportPlayComponent } from '../../report-play/report-play.component';
 
 @Component({
   selector: 'app-report-list',
@@ -37,6 +38,14 @@ export class ReportListPage implements OnInit {
       title: 'Descrição',
       alignment: 'left',
       attribute: 'descricao',
+    },
+    {
+      alignment: 'center',
+      title: 'Play',
+      type: 'btn',
+      iconBtn: 'pi pi-eye',
+      colorBtn: '#0eabe3',
+      actionBtn: (e) => this.goToPlayAction(e),
     },
     {
       alignment: 'center',
@@ -83,6 +92,10 @@ export class ReportListPage implements OnInit {
 
   goToReportAction(e: any): void | undefined {
     this.build.getRouteService().nav(`${ReportEntityPage.ROTE}/${e.id}`);
+  }
+
+  goToPlayAction(e: any): void | undefined {
+    this.build.getRouteService().nav(`${ReportPlayComponent.ROTE}/${e.id}`);
   }
 
   onEnterFilter() {

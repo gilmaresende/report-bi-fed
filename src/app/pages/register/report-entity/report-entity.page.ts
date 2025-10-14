@@ -18,6 +18,7 @@ import { ReportEntityParametrosComponent } from './report-entity-parametros/repo
 import { ReportEntityQueryComponent } from './report-entity-query/report-entity-query.component';
 import { ReportApiService } from '../../../services/api/report-api.service';
 import { ActivatedRoute } from '@angular/router';
+import { getIdRote } from '../../../utils/rote-itils';
 
 @Component({
   selector: 'app-report-entity',
@@ -47,11 +48,9 @@ export class ReportEntityPage {
     private seriveReport: ReportApiService,
     private activatedRoutes: ActivatedRoute
   ) {
-    const id = this.activatedRoutes.snapshot.params['id'];
-    console.log('id', this.activatedRoutes.snapshot.params);
+    const id = getIdRote(this.activatedRoutes);
     if (id) {
       this.seriveReport.getById(id).subscribe((ret) => {
-        console.log('ret', ret);
         this.populateForm(ret.body);
       });
     } else this.populateForm(newReportBI());

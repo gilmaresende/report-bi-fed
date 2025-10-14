@@ -1,0 +1,22 @@
+@if(!hasError){
+<label class="label" [for]="id"> {{ label }} </label>
+}@else{
+<label
+  pInputText
+  type="date"
+  [pTooltip]="errorMessage"
+  tooltipPosition="bottom"
+  class="labelAlert"
+  [for]="id"
+>
+  {{ label }} *
+</label>
+}
+<div class="input-group">
+  <p-datepicker
+    [(ngModel)]="value"
+    (keyup)="teclar()"
+    (onSelect)="teclar()"
+    [dateFormat]="'dd/mm/yy'"
+  />
+</div>

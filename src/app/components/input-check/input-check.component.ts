@@ -18,11 +18,6 @@ import {
       multi: true,
       useExisting: InputCheckComponent,
     },
-    {
-      provide: NG_VALIDATORS,
-      multi: true,
-      useExisting: InputCheckComponent,
-    },
   ],
 })
 export class InputCheckComponent implements ControlValueAccessor, OnInit {
