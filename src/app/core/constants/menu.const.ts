@@ -1,4 +1,5 @@
 import { HomePage } from '../../pages/base/home/home.page';
+import { ConfigComponent } from '../../pages/config/config.component';
 import { ReportEntityPage } from '../../pages/register/report-entity/report-entity.page';
 import { ReportListPage } from '../../pages/register/report-list/report-list.page';
 
@@ -20,6 +21,10 @@ const MENUS_APP: Array<MenuRota> = [
   {
     nome: ReportEntityPage.TITLE,
     rota: ReportEntityPage.ROTE,
+  },
+  {
+    nome: ConfigComponent.TITLE,
+    rota: ConfigComponent.ROTE,
   },
 ];
 
