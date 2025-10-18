@@ -21,4 +21,4 @@ RUN npm install -g http-server
 # Expõe a porta em que a aplicação Angular vai rodar
 EXPOSE 81
 
-CMD ["sh", "-c", "cd dist/cader/browser && http-server --port 81"]
+CMD ["sh", "-c", "cd dist/play-report/browser && http-server --port 81"]
