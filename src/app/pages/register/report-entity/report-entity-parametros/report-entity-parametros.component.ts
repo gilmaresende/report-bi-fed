@@ -126,6 +126,8 @@ export class ReportEntityParametrosComponent {
       chave: [ob.chave, [Validators.required, Validators.min(3)]],
       posicao: ob.posicao,
       tabela: ob.tabela,
+      tabelaColunaValor: ob.tabelaColunaValor,
+      tabelaColunaLabel: ob.tabelaColunaLabel,
       tipoEntrada: ob.tipoEntrada,
       valorPadrao: ob.valorPadrao,
       obrigatorio: [ob.obrigatorio],

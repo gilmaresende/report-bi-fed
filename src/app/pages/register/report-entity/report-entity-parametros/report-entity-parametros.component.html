@@ -54,14 +54,31 @@
               (valueChanged)="receberValorTipoEntrada($event)"
             />
           </div>
+
+          @if (tipoEntradaSelecionado == tipoTabela) {
           <div class="col-6">
-            @if (tipoEntradaSelecionado == tipoTabela) {
             <input-text
               [id]="'tabela_parametro_' + id"
               [label]="'Tabela'"
               formControlName="tabela"
             />
-            }@else if (tipoEntradaSelecionado == tipoPrimitivo) {
+          </div>
+          <div class="col-6">
+            <input-text
+              [id]="'tabela_parametro_coluna_label_' + id"
+              [label]="'Coluna Label'"
+              formControlName="tabelaColunaLabel"
+            />
+          </div>
+          <div class="col-6">
+            <input-text
+              [id]="'tabela_parametro_coluna_valor_' + id"
+              [label]="'Coluna Valor'"
+              formControlName="tabelaColunaValor"
+            />
+          </div>
+          }@else if (tipoEntradaSelecionado == tipoPrimitivo) {
+          <div class="col-6">
             <auto-complete
               [id]="'tipo_primitivo_parametro_' + id"
               [label]="'Tipo Primirivo'"
@@ -70,8 +87,9 @@
               [attributeValue]="'value'"
               [listData]="listDataTiposPrimitico"
               formControlName="tipoPrimitivo"
-            />}
+            />
           </div>
+          }
         </div>
       </div>
       @if (tipoEntradaSelecionado == tipoDefinido){

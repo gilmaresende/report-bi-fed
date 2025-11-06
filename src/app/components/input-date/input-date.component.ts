@@ -13,14 +13,14 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { InputAbs } from '../abs/input.abs';
+import { DatePicker } from 'primeng/datepicker';
 import { TooltipModule } from 'primeng/tooltip';
-import { DatePickerModule } from 'primeng/datepicker';
+import { InputAbs } from '../abs/input.abs';
 @Component({
   selector: 'input-date',
   templateUrl: './input-text.component.html',
   styleUrls: ['./input-text.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, TooltipModule, DatePickerModule],
+  imports: [FormsModule, ReactiveFormsModule, TooltipModule, DatePicker],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

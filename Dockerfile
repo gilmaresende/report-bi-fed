@@ -18,7 +18,6 @@ RUN npm install -g @angular/cli@19.0.7
 
 RUN npm install -g http-server
 
-# Expõe a porta em que a aplicação Angular vai rodar
-EXPOSE 81
+EXPOSE 4200
 
-CMD ["sh", "-c", "cd dist/play-report/browser && http-server --port 81"]
+CMD ["sh", "-c", "cd dist/play-report/browser && http-server --port 4200"]

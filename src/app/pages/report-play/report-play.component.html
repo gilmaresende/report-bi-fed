@@ -11,13 +11,12 @@
 
           <div>
             @if (p.tipoPrimitivo === 'INT') {
-            <input
-              type="text"
+            <input-text
+              [id]="'tabela_parametro_coluna_valor_' + p.chave"
+              [label]="p.descricao"
               [formControlName]="p.chave"
-              [placeholder]="p.descricao"
             />
             } @else if (p.tipoPrimitivo === 'STRING') {
-
             <div>
               <input-text
                 [id]="p.chave"
@@ -35,6 +34,16 @@
 
             } @else {}
           </div>
+          }@else if ( p.tipoEntrada === 'TABELA' ) {
+          <auto-complete
+            [id]="p.chave"
+            [label]="p.descricao"
+            [placeholder]="'Selecione...'"
+            [labelView]="'descricao'"
+            [attributeValue]="'valor'"
+            [listData]="p.valores"
+            [formControlName]="p.chave"
+          />
           }
         </div>
       </div>
