@@ -7,6 +7,8 @@ export interface ReportParametrosBI {
   valorPadrao: string;
   obrigatorio: boolean;
   tabela?: string;
+  tabelaColunaLabel?: string;
+  tabelaColunaValor?: string;
   posicao: number;
   tipoEntrada: 'PRIMITIVO' | 'TABELA' | 'DEFINIDOS';
   tipoPrimitivo?: 'INT' | 'STRING' | 'DATE';
@@ -19,6 +21,8 @@ export function newReportParametrosBI(): ReportParametrosBI {
     obrigatorio: true,
     posicao: 1,
     tabela: '',
+    tabelaColunaLabel: '',
+    tabelaColunaValor: '',
     tipoEntrada: 'TABELA',
     valorPadrao: '',
     valoresFixos: [],

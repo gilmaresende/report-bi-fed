@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { BuildService } from '../../services/infra/build.service';
-import { ReportApiService } from '../../services/api/report-api.service';
-import { ActivatedRoute } from '@angular/router';
-import { getIdRote } from '../../utils/rote-itils';
-import { ReportToPlay } from '../../models/report-bi-to-play';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputTextComponent } from '../../components/input-text/input-text.component';
+import { ActivatedRoute } from '@angular/router';
+import { AutocompleteComponent } from '../../components/auto-complete/auto-complete.component';
 import { InputDateComponent } from '../../components/input-date/input-date.component';
+import { InputTextComponent } from '../../components/input-text/input-text.component';
+import { ReportToPlay } from '../../models/report-bi-to-play';
+import { ReportApiService } from '../../services/api/report-api.service';
+import { BuildService } from '../../services/infra/build.service';
 import { downloadFile } from '../../utils/download.util';
+import { getIdRote } from '../../utils/rote-itils';
 
 @Component({
   selector: 'app-report-play',
@@ -16,6 +17,7 @@ import { downloadFile } from '../../utils/download.util';
     ReactiveFormsModule,
     InputTextComponent,
     InputDateComponent,
+    AutocompleteComponent,
   ],
   templateUrl: './report-play.component.html',
   styleUrl: './report-play.component.scss',
