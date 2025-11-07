@@ -16,6 +16,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
+import { InputAbs } from '../abs/input.abs';
 
 @Component({
   selector: 'auto-complete',
@@ -35,7 +36,10 @@ import {
     },
   ],
 })
-export class AutocompleteComponent implements ControlValueAccessor, OnInit {
+export class AutocompleteComponent
+  extends InputAbs
+  implements ControlValueAccessor, OnInit
+{
   @Input() id!: string;
   @Input() labelView!: string;
   @Input() attributeValue!: string;
@@ -49,7 +53,9 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
   isDropdownOpen: boolean = false;
   selectedIndex: number = -1;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) {
+    super();
+  }
   ngOnInit(): void {
     this.filteredSuggestions = [...this.listData];
   }
@@ -207,39 +213,13 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
     this.resetSelection();
   }
 
-  //-----------------------------------------------------------
-
-  writeValue(obj: any): void {
-    if (obj) {
+  override writeValue(value: string): void {
+    if (value) {
       const itemSelecionado = this.listData.find(
-        (i) => i[this.attributeValue] === obj
+        (i) => i[this.attributeValue] === value
       );
       this.query = itemSelecionado[this.labelView];
     }
-    this.itemSelecionado = obj;
-  }
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  touched = false;
-
-  onChange = (quantity: any) => {};
-
-  onTouched = () => {};
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  markAsTouched() {
-    if (!this.touched) {
-      this.onTouched();
-      this.touched = true;
-    }
-  }
-
-  validate(control: AbstractControl): ValidationErrors | null {
-    return null;
+    this.itemSelecionado = value;
   }
 }

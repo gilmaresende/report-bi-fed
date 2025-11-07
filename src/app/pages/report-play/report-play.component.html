@@ -34,7 +34,8 @@
 
             } @else {}
           </div>
-          }@else if ( p.tipoEntrada === 'TABELA' ) {
+          }@else if ( p.tipoEntrada === 'TABELA'|| p.tipoEntrada === 'DEFINIDOS'
+          ) {
           <auto-complete
             [id]="p.chave"
             [label]="p.descricao"

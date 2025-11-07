@@ -41,10 +41,10 @@ export class ReportListPage implements OnInit {
     },
     {
       alignment: 'center',
-      title: 'Play',
+      title: 'Executar',
       type: 'btn',
-      iconBtn: 'pi pi-eye',
-      colorBtn: '#0eabe3',
+      iconBtn: 'pi pi-play',
+      colorBtn: '#0ee379ff',
       actionBtn: (e) => this.goToPlayAction(e),
     },
     {
