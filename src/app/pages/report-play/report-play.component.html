@@ -3,6 +3,27 @@
   <div class="container">
     <h3>{{ ob.descricao }}</h3>
 
+    <div class="format">
+      <div class="option-format">
+        <div class="item-format">
+          <input-radio
+            [id]="'FORMATO_XLSX'"
+            [label]="'XLSX'"
+            [(ngModel)]="format"
+            [valueFix]="'XLSX'"
+          />
+        </div>
+        <div class="item-format">
+          <input-radio
+            [id]="'FORMATO_CSV'"
+            [label]="'CSV'"
+            [(ngModel)]="format"
+            [valueFix]="'CSV'"
+          />
+        </div>
+      </div>
+    </div>
+
     <form [formGroup]="form" (submit)="play()">
       @for(p of ob.parametros; track $index) {
       <div class="container">

@@ -9,6 +9,7 @@ import { ReportApiService } from '../../services/api/report-api.service';
 import { BuildService } from '../../services/infra/build.service';
 import { downloadFile } from '../../utils/download.util';
 import { getIdRote } from '../../utils/rote-itils';
+import { InputRadioComponent } from '../../components/input-radio/input-radio.component';
 
 @Component({
   selector: 'app-report-play',
@@ -18,6 +19,7 @@ import { getIdRote } from '../../utils/rote-itils';
     InputTextComponent,
     InputDateComponent,
     AutocompleteComponent,
+    InputRadioComponent,
   ],
   templateUrl: './report-play.component.html',
   styleUrl: './report-play.component.scss',
@@ -27,6 +29,8 @@ export class ReportPlayComponent {
   public static ROTE: string = 'report-play';
   ob!: ReportToPlay;
   form!: FormGroup;
+
+  format: string = 'XLSX';
 
   constructor(
     private build: BuildService,
@@ -54,7 +58,7 @@ export class ReportPlayComponent {
     console.log(this.form.value);
 
     this.seriveReport
-      .playReport(this.form.value, this.ob.id)
+      .playReport(this.form.value, this.ob.id, this.format)
       .subscribe((ret) => {
         downloadFile(ret.body);
       });

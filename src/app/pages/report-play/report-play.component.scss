@@ -1,5 +1,18 @@
 :host {
   .center-play {
-    margin: 150px auto;
+    margin: 75px auto;
+    width: 600px;
+  }
+
+  .format {
+    margin: 20px auto;
+  }
+
+  .option-format {
+    display: flex;
+  }
+
+  .item-format {
+    padding: 1rem;
   }
 }

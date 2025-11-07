@@ -81,7 +81,7 @@ export class ReportEntityParametrosComponent {
     },
     {
       alignment: 'left',
-      title: 'Primitivo',
+      title: 'Tipo',
       type: 'txt',
       attribute: 'tipoEntrada',
     },

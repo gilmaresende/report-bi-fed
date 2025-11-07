@@ -27,8 +27,12 @@ export class ReportApiService extends HttpApiService {
     return this.getApi(`report/to-play/${id}`);
   }
 
-  playReport(value: any, id: number): Observable<ResponseApi<DownloadDTO>> {
-    return this.postApi(`report/play/${id}`, value);
+  playReport(
+    value: any,
+    id: number,
+    format: string
+  ): Observable<ResponseApi<DownloadDTO>> {
+    return this.postApi(`report/play/${id}/${format}`, { ...value, format });
   }
 
   getAll(): Observable<ResponseApi<Array<ReportBI>>> {
