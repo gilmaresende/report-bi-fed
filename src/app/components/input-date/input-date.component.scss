@@ -66,3 +66,24 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
   outline: 0 !important;
 }
+
+/* Make the datepicker and its input fill the full width of the parent component */
+:host {
+  display: block;
+}
+
+:host ::ng-deep .input-group {
+  width: 100% !important;
+}
+
+:host ::ng-deep p-datepicker,
+:host ::ng-deep .p-datepicker {
+  display: block !important;
+  width: 100% !important;
+}
+
+:host ::ng-deep .p-datepicker input,
+:host ::ng-deep p-datepicker input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
