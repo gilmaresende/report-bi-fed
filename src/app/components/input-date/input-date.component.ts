@@ -18,8 +18,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { InputAbs } from '../abs/input.abs';
 @Component({
   selector: 'input-date',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss'],
+  templateUrl: './input-date.component.html',
+  styleUrls: ['./input-date.component.scss'],
   imports: [FormsModule, ReactiveFormsModule, TooltipModule, DatePicker],
   providers: [
     {
