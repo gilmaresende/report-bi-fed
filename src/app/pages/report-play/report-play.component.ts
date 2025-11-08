@@ -55,8 +55,6 @@ export class ReportPlayComponent {
   };
 
   play() {
-    console.log(this.form.value);
-
     this.seriveReport
       .playReport(this.form.value, this.ob.id, this.format)
       .subscribe((ret) => {

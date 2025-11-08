@@ -218,7 +218,7 @@ export class AutocompleteComponent
       const itemSelecionado = this.listData.find(
         (i) => i[this.attributeValue] === value
       );
-      this.query = itemSelecionado[this.labelView];
+      this.query = itemSelecionado ? itemSelecionado[this.labelView] : '';
     }
     this.itemSelecionado = value;
   }
