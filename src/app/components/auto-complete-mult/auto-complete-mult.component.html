@@ -1,0 +1,58 @@
+@if (label) {
+<label class="label" [for]="id"> {{ label }} </label>
+}
+<div class="position-relative autocomplete-container">
+  <input
+    [id]="id"
+    type="text"
+    class="form-control"
+    placeholder="{{ placeholder }}"
+    [(ngModel)]="query"
+    (input)="filterSuggestions()"
+    (focus)="openSuggestions()"
+    (keydown)="handleKeyDown($event)"
+    autocomplete="off"
+  />
+
+  <!-- Ícone de limpar o conteúdo -->
+  @if(query) {
+  <div class="clear-icon" (click)="clearQuery()" title="Limpar">✕</div>
+  }
+
+  <!-- Lista de sugestões -->
+  @if(isDropdownOpen && dataNoSeleted.length > 0) {
+  <div
+    class="autocomplete-list"
+    [style.max-height]="'200px'"
+    style="overflow-y: auto"
+  >
+    @for(suggestion of filteredSuggestions; track $index) {
+    <div
+      class="autocomplete-item"
+      [class.active]="selectedIndex === $index"
+      (click)="selectSuggestion(suggestion)"
+      [style.padding.px]="10"
+    >
+      {{ suggestion[labelView] }}
+    </div>
+    }
+  </div>
+  }
+</div>
+<div class="seleteds">
+  @for(suggestion of dataSeleted; track $index) {
+  <div
+    class="autocomplete-item"
+    [class.active]="selectedIndex === $index"
+    [style.padding.px]="10"
+  >
+    {{ suggestion[labelView] }}
+    <span
+      class="remove-icon"
+      (click)="removeSelected(suggestion)"
+      title="Remover"
+      >✕</span
+    >
+  </div>
+  }
+</div>

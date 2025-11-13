@@ -65,6 +65,15 @@
             [listData]="p.valores"
             [formControlName]="p.chave"
           />
+          <auto-complete-mult
+            [id]="p.chave"
+            [label]="p.descricao"
+            [placeholder]="'Selecione...'"
+            [labelView]="'descricao'"
+            [attributeValue]="'valor'"
+            [listData]="p.valores"
+            [formControlName]="p.chave"
+          />
           }
         </div>
       </div>

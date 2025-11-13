@@ -10,6 +10,7 @@ import { BuildService } from '../../services/infra/build.service';
 import { downloadFile } from '../../utils/download.util';
 import { getIdRote } from '../../utils/rote-itils';
 import { InputRadioComponent } from '../../components/input-radio/input-radio.component';
+import { AutocompleteMultComponent } from "../../components/auto-complete-mult/auto-complete-mult.component";
 
 @Component({
   selector: 'app-report-play',
@@ -20,7 +21,8 @@ import { InputRadioComponent } from '../../components/input-radio/input-radio.co
     InputDateComponent,
     AutocompleteComponent,
     InputRadioComponent,
-  ],
+    AutocompleteMultComponent
+],
   templateUrl: './report-play.component.html',
   styleUrl: './report-play.component.scss',
 })
