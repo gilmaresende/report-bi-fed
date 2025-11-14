@@ -19,6 +19,11 @@
         [label]="'Query'"
         (tabSelected)="reportQueryTabBody.activate()"
       />
+      <tab-header
+        [id]="'report-bi-outros-tab'"
+        [label]="'Outros'"
+        (tabSelected)="reportOutrosTabBody.activate()"
+      />
       <tab-body [id]="'report-bi-tab-body'" #reportDetalheTabBody>
         <div>
           <app-report-entity-detalhe [form]="form" />
@@ -31,6 +36,18 @@
       </tab-body>
       <tab-body [id]="'report-bi-query-tab-body'" #reportQueryTabBody>
         <app-report-entity-query [query]="query" />
+      </tab-body>
+      <tab-body [id]="'report-bi-outros-tab-body'" #reportOutrosTabBody>
+        <auto-complete-mult
+          [id]="'grupo-usuario'"
+          [label]="'Grupo Usuario'"
+          [placeholder]="'Selecione...'"
+          [labelView]="'descricao'"
+          [attributeValue]="'id'"
+          [listData]="usuariosGrupos"
+          (valueChanged)="definirGrupoUsuarios($event)"
+          [dataSeletedInput]="grupoUsuarioSelecionados"
+        />
       </tab-body>
     </tab>
     <div class="row">

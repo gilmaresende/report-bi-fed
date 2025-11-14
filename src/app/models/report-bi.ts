@@ -1,7 +1,5 @@
 import { newQueryBI, QueryBI } from './query-bi';
-import {
-  ReportParametrosBI
-} from './report-parametros-bi';
+import { ReportParametrosBI } from './report-parametros-bi';
 
 export interface ReportBI {
   id?: number;
@@ -9,6 +7,7 @@ export interface ReportBI {
   ativo: boolean;
   query: QueryBI;
   parametros: Array<ReportParametrosBI>;
+  gruposUsuarios: Array<number>;
 }
 
 export function newReportBI(): ReportBI {
@@ -19,5 +18,6 @@ export function newReportBI(): ReportBI {
     ativo: true,
     parametros: [],
     query: query,
+    gruposUsuarios: [],
   };
 }

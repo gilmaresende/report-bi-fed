@@ -19,6 +19,9 @@ import { ReportEntityQueryComponent } from './report-entity-query/report-entity-
 import { ReportApiService } from '../../../services/api/report-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { getIdRote } from '../../../utils/rote-itils';
+import { GrupoUsuarioService } from '../../../services/api/grupo-usuario.service';
+import { ItemDTO } from '../../../models/item-dto';
+import { AutocompleteMultComponent } from '../../../components/auto-complete-mult/auto-complete-mult.component';
 
 @Component({
   selector: 'app-report-entity',
@@ -31,6 +34,7 @@ import { getIdRote } from '../../../utils/rote-itils';
     ReportEntityDetalheComponent,
     ReportEntityParametrosComponent,
     ReportEntityQueryComponent,
+    AutocompleteMultComponent,
   ],
   templateUrl: './report-entity.page.html',
   styleUrl: './report-entity.page.scss',
@@ -42,11 +46,14 @@ export class ReportEntityPage {
   query!: QueryBI;
   dataPametros: Array<ReportParametrosBI> = [];
   modelQueryFilha = viewChild.required<ModelImpComponent>('modelQuery');
+  usuariosGrupos: Array<ItemDTO> = [];
+  grupoUsuarioSelecionados: Array<number> = [];
 
   constructor(
     private build: BuildService,
     private seriveReport: ReportApiService,
-    private activatedRoutes: ActivatedRoute
+    private activatedRoutes: ActivatedRoute,
+    private grupoUsuarioService: GrupoUsuarioService
   ) {
     const id = getIdRote(this.activatedRoutes);
     if (id) {
@@ -54,10 +61,15 @@ export class ReportEntityPage {
         this.populateForm(ret.body);
       });
     } else this.populateForm(newReportBI());
+    this.grupoUsuarioService.findAllActive().subscribe((ret) => {
+      this.usuariosGrupos = ret.body;
+    });
   }
 
   populateForm = async (ob: ReportBI) => {
+    console.log('ReportBI recebido para edicao: ', ob);
     this.dataPametros = ob.parametros;
+    this.grupoUsuarioSelecionados = ob.gruposUsuarios || [];
     this.query = ob.query;
     this.form = this.build.getFormBuilder().group({
       id: [ob.id],
@@ -72,9 +84,15 @@ export class ReportEntityPage {
 
   save() {
     const valor = this.form.value as ReportBI;
-    Object.assign(valor, { query: this.query, parametros: this.dataPametros });
-    this.seriveReport.save(valor).subscribe((ret) => {
-      
+    Object.assign(valor, {
+      query: this.query,
+      parametros: this.dataPametros,
+      gruposUsuarios: this.grupoUsuarioSelecionados,
     });
+    this.seriveReport.save(valor).subscribe((ret) => {});
+  }
+
+  definirGrupoUsuarios(event: any) {
+    this.grupoUsuarioSelecionados = event;
   }
 }

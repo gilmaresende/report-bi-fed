@@ -14,6 +14,7 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { InputAbs } from '../abs/input.abs';
+import { ItemDTO } from '../../models/item-dto';
 
 @Component({
   selector: 'auto-complete-mult',
@@ -52,6 +53,7 @@ export class AutocompleteMultComponent
   isModalOpen: boolean = false;
 
   dataSeleted: any[] = [];
+  @Input() dataSeletedInput?: Array<number>;
   dataSeletedNumber: any[] = [];
   dataNoSeleted: any[] = [];
 
@@ -61,6 +63,10 @@ export class AutocompleteMultComponent
   ngOnInit(): void {
     this.filteredSuggestions = [...this.listData];
     this.dataNoSeleted = [...this.listData];
+
+    if (this.dataSeletedInput) {
+      this.popularSelected(this.dataSeletedInput);
+    }
   }
 
   /**
@@ -218,7 +224,8 @@ export class AutocompleteMultComponent
     this.resetSelection();
   }
 
-  override writeValue(value: string): void {
+  override writeValue(value: any): void {
+    this.popularSelected(value);
     /*if (value) {
       const itemSelecionado = this.listData.find(
         (i) => i[this.attributeValue] === value
@@ -226,6 +233,16 @@ export class AutocompleteMultComponent
       this.query = itemSelecionado ? itemSelecionado[this.labelView] : '';
     }
     this.itemSelecionado = value;*/
+  }
+
+  popularSelected(dataSeleted: Array<any>): void {
+    this.dataSeleted = this.listData.filter((item) =>
+      dataSeleted.includes(item[this.attributeValue])
+    );
+    this.dataSeletedNumber = dataSeleted;
+    this.dataNoSeleted = this.listData.filter(
+      (item) => !dataSeleted.includes(item[this.attributeValue])
+    );
   }
 
   removeSelected(item: any): void {
