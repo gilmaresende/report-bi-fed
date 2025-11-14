@@ -74,7 +74,7 @@ export class ReportEntityPage {
     const valor = this.form.value as ReportBI;
     Object.assign(valor, { query: this.query, parametros: this.dataPametros });
     this.seriveReport.save(valor).subscribe((ret) => {
-      console.log('ret', ret);
+      
     });
   }
 }

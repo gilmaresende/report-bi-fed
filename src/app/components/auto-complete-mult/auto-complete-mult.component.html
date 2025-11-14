@@ -39,20 +39,35 @@
   </div>
   }
 </div>
-<div class="seleteds">
-  @for(suggestion of dataSeleted; track $index) {
-  <div
-    class="autocomplete-item"
-    [class.active]="selectedIndex === $index"
-    [style.padding.px]="10"
-  >
-    {{ suggestion[labelView] }}
-    <span
-      class="remove-icon"
-      (click)="removeSelected(suggestion)"
-      title="Remover"
-      >✕</span
-    >
+
+<!-- Botão para abrir modal -->
+@if(dataSeleted.length > 0) {
+<button class="btn-view-selected" (click)="openModal()" type="button">
+  Ver Selecionados ({{ dataSeleted.length }})
+</button>
+}
+
+<!-- Modal -->
+@if(isModalOpen) {
+<div class="modal-backdrop" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Itens Selecionados</h3>
+      <span class="modal-close" (click)="closeModal()" title="Fechar">✕</span>
+    </div>
+    <div class="modal-body">
+      @for(suggestion of dataSeleted; track $index) {
+      <div class="selected-item" [style.padding.px]="10">
+        {{ suggestion[labelView] }}
+        <span
+          class="remove-icon"
+          (click)="removeSelected(suggestion)"
+          title="Remover"
+          >✕</span
+        >
+      </div>
+      }
+    </div>
   </div>
-  }
 </div>
+}

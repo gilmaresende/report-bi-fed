@@ -49,8 +49,10 @@ export class AutocompleteMultComponent
 
   isDropdownOpen: boolean = false;
   selectedIndex: number = -1;
+  isModalOpen: boolean = false;
 
   dataSeleted: any[] = [];
+  dataSeletedNumber: any[] = [];
   dataNoSeleted: any[] = [];
 
   constructor(private elementRef: ElementRef) {
@@ -74,7 +76,6 @@ export class AutocompleteMultComponent
       this.isDropdownOpen = false;
       return;
     }
-    console.log(this.dataNoSeleted);
     this.filteredSuggestions = this.dataNoSeleted.filter((item) =>
       item[this.labelView].toLowerCase().includes(queryLower)
     );
@@ -87,13 +88,14 @@ export class AutocompleteMultComponent
    */
   selectSuggestion(suggestion: any): void {
     this.dataSeleted.push(suggestion);
+    this.dataSeletedNumber.push(suggestion[this.attributeValue]);
     this.query = ''; //suggestion[this.labelView];
     this.closeDropdown();
     this.filteredSuggestions = this.dataNoSeleted = this.dataNoSeleted.filter(
       (item) => item[this.attributeValue] !== suggestion[this.attributeValue]
     );
-    //this.onChange(this.itemSelecionado[this.attributeValue]);
-    //this.valueChanged.emit(this.itemSelecionado[this.attributeValue]);
+    this.onChange(this.dataSeletedNumber);
+    this.valueChanged.emit(this.dataSeletedNumber);
   }
 
   /**
@@ -230,9 +232,14 @@ export class AutocompleteMultComponent
     this.dataSeleted = this.dataSeleted.filter(
       (i) => i[this.attributeValue] !== item[this.attributeValue]
     );
+    this.dataSeletedNumber = this.dataSeletedNumber.filter(
+      (i) => i !== item[this.attributeValue]
+    );
     this.dataNoSeleted.push(item);
     this.filteredSuggestions = [...this.dataNoSeleted];
     this.sortFilteredSuggestions();
+    this.onChange(this.dataSeletedNumber);
+    this.valueChanged.emit(this.dataSeletedNumber);
   }
 
   private sortFilteredSuggestions(): void {
@@ -244,5 +251,13 @@ export class AutocompleteMultComponent
         { sensitivity: 'base' }
       )
     );
+  }
+
+  openModal(): void {
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
   }
 }

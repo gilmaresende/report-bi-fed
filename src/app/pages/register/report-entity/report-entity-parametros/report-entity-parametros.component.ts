@@ -132,6 +132,7 @@ export class ReportEntityParametrosComponent {
       valorPadrao: ob.valorPadrao,
       obrigatorio: [ob.obrigatorio],
       tipoPrimitivo: ob.tipoPrimitivo,
+      multiplos: [ob.multiplos],
     });
   };
 

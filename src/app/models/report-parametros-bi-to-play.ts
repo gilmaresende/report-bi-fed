@@ -6,7 +6,8 @@ export interface ReportParametrosToPlay {
   valorPadrao: string;
   obrigatorio: boolean;
   posicao: number;
-  tipoEntrada: 'PRIMITIVO' | 'TABELA' | 'DEFINIDOS';
+  tipoEntrada: 'PRIMITIVO' | 'TABELA' | 'DEFINIDOS' | 'MULTIPLOS';
+  multiplos?: boolean;
   tipoPrimitivo?: 'INT' | 'STRING' | 'DATE';
   valores: Array<ValorDefinidoFixoBI>;
 }

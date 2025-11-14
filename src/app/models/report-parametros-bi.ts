@@ -11,6 +11,7 @@ export interface ReportParametrosBI {
   tabelaColunaValor?: string;
   posicao: number;
   tipoEntrada: 'PRIMITIVO' | 'TABELA' | 'DEFINIDOS';
+  multiplos: boolean;
   tipoPrimitivo?: 'INT' | 'STRING' | 'DATE';
   valoresFixos: Array<ValorDefinidoFixoBI>;
 }
@@ -26,5 +27,6 @@ export function newReportParametrosBI(): ReportParametrosBI {
     tipoEntrada: 'TABELA',
     valorPadrao: '',
     valoresFixos: [],
+    multiplos: false,
   };
 }

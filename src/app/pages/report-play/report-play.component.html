@@ -55,16 +55,7 @@
             } @else {}
           </div>
           }@else if ( p.tipoEntrada === 'TABELA'|| p.tipoEntrada === 'DEFINIDOS'
-          ) {
-          <auto-complete
-            [id]="p.chave"
-            [label]="p.descricao"
-            [placeholder]="'Selecione...'"
-            [labelView]="'descricao'"
-            [attributeValue]="'valor'"
-            [listData]="p.valores"
-            [formControlName]="p.chave"
-          />
+          ) { @if(p.multiplos){
           <auto-complete-mult
             [id]="p.chave"
             [label]="p.descricao"
@@ -74,7 +65,17 @@
             [listData]="p.valores"
             [formControlName]="p.chave"
           />
-          }
+          }@else{
+          <auto-complete
+            [id]="p.chave"
+            [label]="p.descricao"
+            [placeholder]="'Selecione...'"
+            [labelView]="'descricao'"
+            [attributeValue]="'valor'"
+            [listData]="p.valores"
+            [formControlName]="p.chave"
+          />
+          } }
         </div>
       </div>
       }

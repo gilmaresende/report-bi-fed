@@ -77,6 +77,17 @@
               formControlName="tabelaColunaValor"
             />
           </div>
+          <div class="col-6">
+            <div class="row mt-2 mb-2">
+              <div class="col-12">
+                <input-check
+                  [id]="'multiplos' + id"
+                  [label]="'Multiplos'"
+                  formControlName="multiplos"
+                />
+              </div>
+            </div>
+          </div>
           }@else if (tipoEntradaSelecionado == tipoPrimitivo) {
           <div class="col-6">
             <auto-complete
@@ -93,10 +104,20 @@
         </div>
       </div>
       @if (tipoEntradaSelecionado == tipoDefinido){
+      <div class="row mt-2 mb-2">
+        <div class="col-12">
+          <input-check
+            [id]="'multiplos' + id"
+            [label]="'Multiplos'"
+            formControlName="multiplos"
+          />
+        </div>
+      </div>
       <app-report-valores-fixos
         (eventRemoveValor)="removerValorDefinido($event)"
         [valoresDefinidos]="valoresDefinidos"
       />
+
       }
       <div class="row">
         <div class="col-12 pt-3">
